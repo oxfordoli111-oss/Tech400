@@ -1,0 +1,1 @@
+Python is a high level programming language known for its clean and readable syntax. Developers use Python for web development, data science, automation, and artificial intelligence. Many beginners choose Python as their first programming language because it is easy to learn.

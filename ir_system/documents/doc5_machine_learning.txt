@@ -1,0 +1,1 @@
+Machine learning is a branch of artificial intelligence that enables computers to learn patterns from data. Many machine learning projects are built using Python because of its rich ecosystem of libraries. Common machine learning tasks include classification, regression, and clustering.
