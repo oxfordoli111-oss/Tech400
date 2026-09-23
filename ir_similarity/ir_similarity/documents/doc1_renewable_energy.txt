@@ -1,0 +1,4 @@
+Source: https://www.eia.gov/todayinenergy/detail.php?id=67925
+License: U.S. Government Work (Public Domain)
+
+Utility-scale battery storage capacity in the United States increased significantly during the last three years, with an annual average growth rate of 70%. By the end of 2025, the U.S. power system had operational battery storage capacity of 43.6 gigawatts (GW). During the first six months of 2026, operators added another 8.3 GW of battery storage capacity, reaching nearly 52 GW of nameplate battery storage capacity, based on the latest Preliminary Monthly Electric Generator Inventory. Operators anticipate bringing an additional 54 GW of battery storage capacity online over the next two and a half years, according to plans they report to the U.S. Energy Information Administration. Battery storage is often co-located with solar power plants, helping the electric grid absorb variable renewable energy sources such as wind and solar.
