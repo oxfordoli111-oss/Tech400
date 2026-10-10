@@ -1,0 +1,15 @@
+Query 5: What special training will ordinary researchers and businessmen need for proper information management and unobstructed use of information retrieval systems? What problems are they likely to encounter?
+Analysed terms: ['special', 'train', 'ordinari', 'research', 'businessmen', 'need', 'proper', 'inform', 'manag', 'unobstruct', 'inform', 'retriev', 'system', 'problem', 'like', 'encount']
+Relevant docs (24): [32, 56, 65, 114, 124, 137, 187, 188, 191, 241, 339, 370, 400, 451, 453]...
+
+Top 10 (BM25 tuned):
+ 1. doc 1105  score=16.636      Information Services for Supervisory Staff, Forms and Methods
+ 2. doc 560   score=16.086      Indivisible Colleges; Diffusion of Knowledge in Scientific Communities
+ 3. doc 1038  score=15.758      Management Misinformation Systems
+ 4. doc 648   score=15.526 REL  User Training for On-Line Information Retrieval Systems
+ 5. doc 483   score=14.395      Performance of Automatic Information Systems
+ 6. doc 630   score=14.294      A Novel Philosophy for the Design of Information Storage and Retrieval
+ 7. doc 1166  score=14.257      New Tasks of Information Services and Specialists Training Problem
+ 8. doc 451   score=14.140 REL  Interaction Between Requesters and a Large Mechanized retrieval System
+ 9. doc 122   score=14.131      Information Networks
+10. doc 1171  score=13.811      Problems of Compatibility of Information on Retrieval Systems and  Req

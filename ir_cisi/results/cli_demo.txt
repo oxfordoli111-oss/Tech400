@@ -1,0 +1,7 @@
+Indexed 1460 docs, 6065 terms. Model=bm25 PRF=False
+analysed -> ['automat', 'index', 'librari', 'catalogu']
+ 1. [ 262]   9.462  Classification and Subject Index for a Library
+ 2. [1266]   9.210  Rules for a Dictionary Catalog
+ 3. [  72]   8.680  A Comparison Between Manual and Automatic Indexing Methods
+ 4. [ 994]   8.394  Measuring Reader Failure at the Catalogue
+ 5. [ 913]   8.157  On the construction and care of white elephants

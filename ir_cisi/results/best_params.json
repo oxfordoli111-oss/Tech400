@@ -1,0 +1,11 @@
+{
+  "best_k1": 2.2,
+  "best_b": 0.75,
+  "prf": {
+    "fb_docs": 5,
+    "fb_terms": 20,
+    "beta": 1.0
+  },
+  "dev_queries": 38,
+  "test_queries": 38
+}

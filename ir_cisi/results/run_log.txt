@@ -1,0 +1,45 @@
+1460 documents | 112 queries | 76 judged queries | 3114 relevance pairs
+
+INDEX STATISTICS
+           preprocessing  documents  vocabulary (terms)  total tokens  avg doc length  total postings
+       A: tokenise only       1460               10013        187670           128.5          114508
+        B: + stop words       1460                9889        104489            71.6           81603
+C: + stop + Porter stem       1460                6065        104489            71.6           76735
+
+MODEL x PREPROCESSING (all judged queries)
+           preprocessing                   model    MAP    P@5   P@10   R@10  nDCG@10    MRR
+       A: tokenise only TF-IDF cosine (lnc.ltc) 0.0890 0.1895 0.1487 0.0461   0.1676 0.3799
+       A: tokenise only   BM25 (k1=1.2, b=0.75) 0.1791 0.3526 0.2921 0.1188   0.3332 0.6050
+       A: tokenise only    Query LM (JM, λ=0.7) 0.1760 0.3474 0.2842 0.1197   0.3268 0.5928
+        B: + stop words TF-IDF cosine (lnc.ltc) 0.1374 0.2842 0.2303 0.0807   0.2524 0.4665
+        B: + stop words   BM25 (k1=1.2, b=0.75) 0.1918 0.3711 0.3092 0.1371   0.3547 0.6104
+        B: + stop words    Query LM (JM, λ=0.7) 0.1895 0.3447 0.3000 0.1201   0.3439 0.5973
+C: + stop + Porter stem TF-IDF cosine (lnc.ltc) 0.1746 0.3368 0.2895 0.1051   0.3160 0.5359
+C: + stop + Porter stem   BM25 (k1=1.2, b=0.75) 0.2217 0.4289 0.3671 0.1467   0.4024 0.6477
+C: + stop + Porter stem    Query LM (JM, λ=0.7) 0.2114 0.4211 0.3487 0.1439   0.3822 0.6029
+
+BM25 tuning on DEV queries (38): best k1=2.2, b=0.75, dev MAP=0.2374
+PRF tuning on DEV: fb_docs=5, fb_terms=20, beta=1.0, dev MAP=0.2557
+
+FINAL SYSTEMS
+                                      system  MAP (test)  P@10 (test)  nDCG@10 (test)  MAP (all 76)  P@10 (all 76)  R@10 (all 76)
+                              TF-IDF cosine      0.1624       0.2500          0.2732        0.1746         0.2895         0.1051
+                               BM25 default      0.2129       0.3211          0.3683        0.2217         0.3671         0.1467
+                BM25 tuned (k1=2.2, b=0.75)      0.2140       0.3000          0.3530        0.2257         0.3645         0.1453
+BM25 tuned + Rocchio PRF (k=5, m=20, β=1.0)      0.2417       0.3368          0.3876        0.2487         0.3803         0.1420
+
+Query 5: What special training will ordinary researchers and businessmen need for proper information management and unobstructed use of information retrieval systems? What problems are they likely to encounter?
+Analysed terms: ['special', 'train', 'ordinari', 'research', 'businessmen', 'need', 'proper', 'inform', 'manag', 'unobstruct', 'inform', 'retriev', 'system', 'problem', 'like', 'encount']
+Relevant docs (24): [32, 56, 65, 114, 124, 137, 187, 188, 191, 241, 339, 370, 400, 451, 453]...
+
+Top 10 (BM25 tuned):
+ 1. doc 1105  score=16.636      Information Services for Supervisory Staff, Forms and Methods
+ 2. doc 560   score=16.086      Indivisible Colleges; Diffusion of Knowledge in Scientific Communities
+ 3. doc 1038  score=15.758      Management Misinformation Systems
+ 4. doc 648   score=15.526 REL  User Training for On-Line Information Retrieval Systems
+ 5. doc 483   score=14.395      Performance of Automatic Information Systems
+ 6. doc 630   score=14.294      A Novel Philosophy for the Design of Information Storage and Retrieval
+ 7. doc 1166  score=14.257      New Tasks of Information Services and Specialists Training Problem
+ 8. doc 451   score=14.140 REL  Interaction Between Requesters and a Large Mechanized retrieval System
+ 9. doc 122   score=14.131      Information Networks
+10. doc 1171  score=13.811      Problems of Compatibility of Information on Retrieval Systems and  Req

@@ -1,0 +1,4 @@
+preprocessing,documents,vocabulary (terms),total tokens,avg doc length,total postings
+A: tokenise only,1460,10013,187670,128.5,114508
+B: + stop words,1460,9889,104489,71.6,81603
+C: + stop + Porter stem,1460,6065,104489,71.6,76735
