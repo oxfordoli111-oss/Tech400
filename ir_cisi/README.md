@@ -38,3 +38,22 @@ results/             CSV tables, figures, logs, snapshots
 | BM25 tuned + Rocchio PRF | 0.249 | 0.380 |
 
 Parameters were tuned on half of the queries (dev) and reported on the other half (test), following Sec. 13.6.
+
+
+## Dataset
+
+This project uses the **CISI** collection (1,460 documents, 112 queries, relevance judgments),
+a public test collection for information retrieval originally from the University of Glasgow
+Information Retrieval Group.
+
+- Source: [CISI (a dataset for Information Retrieval) on Kaggle](https://www.kaggle.com/datasets/dmaso01dsta/cisi-a-dataset-for-information-retrieval)
+- Original collection: http://ir.dcs.gla.ac.uk/resources/test_collections/cisi/
+- The data files are **not included** in this repository. Download them from Kaggle and place
+  these three files in a `data/` folder inside `ir_cisi/`:
+
+      ir_cisi/data/CISI.ALL   (documents)
+      ir_cisi/data/CISI.QRY   (queries)
+      ir_cisi/data/CISI.REL   (relevance judgments)
+
+Citation: HJMASON. (n.d.). *CISI (a dataset for information retrieval)* [Data set]. Kaggle.
+https://www.kaggle.com/datasets/dmaso01dsta/cisi-a-dataset-for-information-retrieval
