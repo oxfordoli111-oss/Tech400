@@ -28,7 +28,7 @@ N = len(docs)
 print(f"{N} documents | {len(queries)} queries | {len(judged)} judged queries | "
       f"{sum(len(v) for v in qrels.values())} relevance pairs")
 
-# development / test split (Sec. 13.6: tune on held-out data, report once on the rest)
+# development / test split (tune on held-out data, report once on the rest; Manning et al., 2009)
 dev_ids = judged[0::2]
 test_ids = judged[1::2]
 

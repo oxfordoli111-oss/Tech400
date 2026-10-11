@@ -1,7 +1,7 @@
-"""Pseudo-relevance feedback with the Rocchio algorithm (Manning et al., Sec. 9.1.1).
+"""Pseudo-relevance feedback with the Rocchio algorithm (Rocchio, 1971; Manning et al., 2009).
 
 q_m = alpha * q_0 + beta * (1/|D_r|) * sum_{d in D_r} d      (no negative-feedback term)
-D_r is simply the top-k documents of the first-pass ranking (blind feedback, Sec. 9.1.6).
+D_r is simply the top-k documents of the first-pass ranking (blind feedback).
 """
 import math
 from collections import defaultdict

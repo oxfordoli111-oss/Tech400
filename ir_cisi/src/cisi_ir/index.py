@@ -1,4 +1,4 @@
-"""Inverted index (Manning et al., Ch. 1 & 4): term -> postings list [(docID, tf), ...]."""
+"""Inverted index (Manning et al., 2009): term -> postings list [(docID, tf), ...]."""
 import math
 import pickle
 from collections import Counter, defaultdict
@@ -18,7 +18,7 @@ class InvertedIndex:
     # ---- construction ---------------------------------------------------
     def build(self, docs):
         """One pass over the corpus; docs processed in increasing docID order so
-        postings stay sorted without a separate sort step (blocked sort-based idea, Sec. 4.2)."""
+        postings stay sorted without a separate sort step (blocked sort-based indexing idea)."""
         for doc_id in sorted(docs):
             tokens = self.pre(docs[doc_id]["text"])
             tf = Counter(tokens)
@@ -53,7 +53,7 @@ class InvertedIndex:
             "total postings": sum(len(p) for p in self.postings.values()),
         }
 
-    # ---- Boolean retrieval (Sec. 1.3): postings intersection / union ----------
+    # ---- Boolean retrieval: postings intersection / union ----------
     def boolean_and(self, terms):
         lists = sorted((self.postings.get(t, []) for t in terms), key=len)
         if not lists or not lists[0]:

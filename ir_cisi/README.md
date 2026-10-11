@@ -2,17 +2,17 @@
 
 A basic ad-hoc search engine built **from scratch in Python** on the CISI collection
 (1,460 documents, 112 queries, 76 queries with relevance judgments).
-It implements methods from Chapters 1–12 of Manning, Raghavan & Schütze (2009),
+It implements classical retrieval methods described by Manning, Raghavan & Schütze (2009),
 *An Introduction to Information Retrieval*.
 
-| Stage | Method | Book reference |
-|---|---|---|
-| Preprocessing | tokenise, lowercase, stop-word removal, Porter stemming | Ch. 2 |
-| Indexing | inverted index with (docID, tf) postings, df/cf/doc-length statistics | Ch. 1, 4 |
-| Retrieval models | TF-IDF cosine (lnc.ltc), Okapi BM25, query likelihood (Jelinek-Mercer) | Ch. 6, 11, 12 |
-| Query processing | same analyzer as documents, term-at-a-time scoring, heap top-k, Boolean AND/OR | Ch. 1, 7 |
-| Query expansion | Rocchio pseudo-relevance feedback | Ch. 9 |
-| Evaluation | P@k, R@k, MAP, nDCG, MRR, 11-point PR curve | Ch. 8 |
+| Stage | Method |
+|---|---|
+| Preprocessing | tokenise, lowercase, stop-word removal, Porter stemming |
+| Indexing | inverted index with (docID, tf) postings, df/cf/doc-length statistics |
+| Retrieval models | TF-IDF cosine (lnc.ltc), Okapi BM25, query likelihood (Jelinek-Mercer) |
+| Query processing | same analyzer as documents, term-at-a-time scoring, heap top-k, Boolean AND/OR |
+| Query expansion | Rocchio pseudo-relevance feedback |
+| Evaluation | P@k, R@k, MAP, nDCG, MRR, 11-point PR curve |
 
 ## Setup
 ```bash
@@ -37,7 +37,7 @@ results/             CSV tables, figures, logs, snapshots
 | BM25 (k1=1.2, b=0.75) | 0.222 | 0.367 |
 | BM25 tuned + Rocchio PRF | 0.249 | 0.380 |
 
-Parameters were tuned on half of the queries (dev) and reported on the other half (test), following Sec. 13.6.
+Parameters were tuned on half of the queries (dev) and reported on the other half (test), following Manning et al. (2009).
 
 
 ## Dataset
@@ -57,3 +57,26 @@ Information Retrieval Group.
 
 Citation: HJMASON. (n.d.). *CISI (a dataset for information retrieval)* [Data set]. Kaggle.
 https://www.kaggle.com/datasets/dmaso01dsta/cisi-a-dataset-for-information-retrieval
+
+## Week 7: evaluation of the models
+
+`evaluate_models.py` evaluates every system on the 76 judged queries with precision/recall at several cutoffs,
+F1, R-precision, MAP, nDCG, MRR, Success@10 and 11-point precision-recall curves. It also computes bootstrap
+confidence intervals, paired randomization significance tests, Boolean AND/OR baselines, a per-query failure
+analysis, an analysis of query length and a short-query (2-8 terms) simulation.
+
+```bash
+python evaluate_models.py          # tables + figures -> results/week7/
+python capture_recapture_demo.py   # simulation for the Week 7 discussion (index-size estimation)
+python make_snapshots_w7.py        # regenerate the screenshot-style images used in the report
+```
+
+| Week 7 file | Purpose |
+|---|---|
+| `src/cisi_ir/evaluate.py` | metric functions (P@k, R@k, F1, AP, nDCG, R-precision, set metrics, bootstrap CI, randomization test) |
+| `evaluate_models.py` | runs all systems and writes `results/week7/*.csv` and figures |
+| `capture_recapture_demo.py` | simulates the capture-recapture estimate of relative index size |
+| `snapshot_utils.py`, `make_snapshots_w7.py` | create screenshot-style images of code and output |
+
+Headline results (76 judged queries): BM25 + Rocchio feedback MAP 0.249, nDCG@10 0.420, P@1 0.566;
+default BM25 MAP 0.222; query likelihood MAP 0.211; TF-IDF cosine MAP 0.175.

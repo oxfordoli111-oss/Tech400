@@ -1,0 +1,121 @@
+1460 documents, 76 judged queries, vocabulary 6065 terms
+
+== MEAN METRICS AT FIXED CUTOFFS (76 judged queries) ==
+                      P@1     P@5    P@10    P@20    R@10    R@20    R@50   R@100
+TF-IDF cosine     0.3947  0.3368  0.2895  0.2303  0.1051  0.1542  0.2658  0.3767
+Query LM (JM)     0.4605  0.4211  0.3487  0.2822  0.1439  0.2149  0.3223  0.4405
+BM25 (default)    0.5000  0.4289  0.3671  0.2855  0.1467  0.2023  0.3279  0.4514
+BM25 (tuned)      0.5132  0.4368  0.3645  0.2908  0.1453  0.2032  0.3380  0.4602
+BM25 tuned + PRF  0.5658  0.4368  0.3803  0.3033  0.1420  0.2433  0.3627  0.4910
+
+== MEAN SUMMARY METRICS (76 judged queries) ==
+                    F1@10   Rprec     MAP  nDCG@5  nDCG@10  nDCG@20     MRR  Success@10
+TF-IDF cosine     0.1346  0.2046  0.1746  0.3491   0.3160   0.2870  0.5359      0.8421
+Query LM (JM)     0.1695  0.2356  0.2114  0.4254   0.3822   0.3528  0.6029      0.9211
+BM25 (default)    0.1742  0.2415  0.2217  0.4459   0.4024   0.3594  0.6477      0.9211
+BM25 (tuned)      0.1727  0.2498  0.2257  0.4491   0.4017   0.3627  0.6520      0.9079
+BM25 tuned + PRF  0.1821  0.2625  0.2487  0.4628   0.4201   0.3868  0.6823      0.8816
+
+== 95% BOOTSTRAP CIs ==
+           system  metric   mean  ci_low  ci_high
+   TF-IDF cosine     MAP 0.1746  0.1470   0.2034
+   TF-IDF cosine nDCG@10 0.3160  0.2615   0.3736
+   TF-IDF cosine    P@10 0.2895  0.2408   0.3408
+   Query LM (JM)     MAP 0.2114  0.1797   0.2452
+   Query LM (JM) nDCG@10 0.3822  0.3261   0.4390
+   Query LM (JM)    P@10 0.3487  0.2974   0.4013
+  BM25 (default)     MAP 0.2217  0.1886   0.2575
+  BM25 (default) nDCG@10 0.4024  0.3472   0.4597
+  BM25 (default)    P@10 0.3671  0.3145   0.4211
+    BM25 (tuned)     MAP 0.2257  0.1904   0.2627
+    BM25 (tuned) nDCG@10 0.4017  0.3428   0.4613
+    BM25 (tuned)    P@10 0.3645  0.3092   0.4197
+BM25 tuned + PRF     MAP 0.2487  0.2105   0.2900
+BM25 tuned + PRF nDCG@10 0.4201  0.3586   0.4838
+BM25 tuned + PRF    P@10 0.3803  0.3237   0.4408
+
+== DEV / TEST SPLIT ==
+                   MAP dev  MAP test  nDCG@10 test  P@10 test
+TF-IDF cosine      0.1868    0.1624        0.2732     0.2500
+Query LM (JM)      0.2146    0.2083        0.3600     0.3158
+BM25 (default)     0.2306    0.2129        0.3683     0.3211
+BM25 (tuned)       0.2374    0.2140        0.3530     0.3000
+BM25 tuned + PRF   0.2557    0.2417        0.3876     0.3368
+
+== PAIRED RANDOMIZATION TESTS (two-sided) ==
+           system             vs  metric  mean diff  wins  losses  ties  p-value
+   TF-IDF cosine BM25 (default)     MAP    -0.0472    15      61     0   0.0000
+   TF-IDF cosine BM25 (default) nDCG@10    -0.0865    18      51     7   0.0001
+   TF-IDF cosine BM25 (default)    P@10    -0.0776    13      37    26   0.0003
+   Query LM (JM) BM25 (default)     MAP    -0.0103    27      49     0   0.0044
+   Query LM (JM) BM25 (default) nDCG@10    -0.0202    22      42    12   0.0894
+   Query LM (JM) BM25 (default)    P@10    -0.0184    14      24    38   0.0988
+    BM25 (tuned) BM25 (default)     MAP     0.0039    50      26     0   0.2245
+    BM25 (tuned) BM25 (default) nDCG@10    -0.0007    34      28    14   0.9333
+    BM25 (tuned) BM25 (default)    P@10    -0.0026    14      16    46   0.8869
+BM25 tuned + PRF BM25 (default)     MAP     0.0270    52      24     0   0.0002
+BM25 tuned + PRF BM25 (default) nDCG@10     0.0177    40      26    10   0.1882
+BM25 tuned + PRF BM25 (default)    P@10     0.0132    27      18    31   0.3357
+BM25 tuned + PRF   BM25 (tuned)     MAP     0.0230    53      23     0   0.0006
+BM25 tuned + PRF   BM25 (tuned) nDCG@10     0.0184    39      28     9   0.1387
+BM25 tuned + PRF   BM25 (tuned)    P@10     0.0158    27      20    29   0.2553
+
+== BOOLEAN BASELINES (set-based) ==
+              precision  recall      F1  retrieved  % queries with empty result
+Boolean AND     0.0368  0.0011  0.0020     0.1711                      93.4211
+Boolean OR      0.0355  0.9624  0.0666  1148.1447                       0.0000
+
+== EFFECT OF QUERY LENGTH (terciles by analysed term count) ==
+         queries  avg terms  MAP BM25 (tuned)  MAP TF-IDF  MAP + PRF
+bucket                                                             
+short        27     6.5926            0.1935      0.1525     0.1997
+medium       25    21.0000            0.2198      0.1710     0.2354
+long         24    51.5417            0.2680      0.2031     0.3177
+
+Spearman(AP, #relevant docs) = 0.338   Spearman(AP, #query terms) = 0.106
+
+== 8 HARDEST QUERIES (BM25 tuned) ==
+         AP  terms  relevant  first_rel_rank                                          query
+14   0.008      4         3              74  What future is there for automatic medical...
+8    0.031      8        18              32  Describe information retrieval and indexin...
+101  0.033     47         1              30  Conventional information retrieval process...
+61   0.040     30        11              24  The way that individuals construct and mod...
+43   0.040     31        13               5  The difficulties encountered in informatio...
+7    0.042     18         8               5  Describe presently working and planned sys...
+33   0.049      8        20              14  Retrieval systems which provide for the au...
+17   0.052     11        26               1  Means of obtaining large volume, high spee...
+
+== 5 EASIEST QUERIES ==
+         AP  terms  relevant  first_rel_rank                                          query
+55   0.788     13        18               1  What are the aims and objectives of the me...
+62   0.647     34        12               1  This article concerns the problem of how t...
+52   0.616     21        15               1  What are the characteristics of MEDLARS (M...
+102  0.542     50        24               1  The frequency characteristics of terms in ...
+1    0.522     14        46               1  What problems and concerns are there in ma...
+
+Queries with AP < 0.05 (BM25 tuned): 7 of 76; queries with no relevant doc in top 10: 7
+
+== SHORT-QUERY SIMULATION (top-m idf terms) ==
+ terms kept           system    MAP   P@10  nDCG@10    P@1
+         2    TF-IDF cosine 0.0699 0.1500   0.1697 0.2368
+         2    Query LM (JM) 0.0692 0.1566   0.1684 0.1974
+         2     BM25 (tuned) 0.0721 0.1566   0.1783 0.2763
+         2 BM25 tuned + PRF 0.1038 0.1671   0.1786 0.2237
+         3    TF-IDF cosine 0.0999 0.1895   0.2100 0.2632
+         3    Query LM (JM) 0.0962 0.1908   0.2080 0.2763
+         3     BM25 (tuned) 0.1052 0.2039   0.2301 0.3158
+         3 BM25 tuned + PRF 0.1376 0.2171   0.2372 0.3026
+         5    TF-IDF cosine 0.1241 0.2118   0.2386 0.3421
+         5    Query LM (JM) 0.1197 0.2250   0.2377 0.2763
+         5     BM25 (tuned) 0.1330 0.2461   0.2634 0.2895
+         5 BM25 tuned + PRF 0.1589 0.2487   0.2727 0.3421
+         8    TF-IDF cosine 0.1445 0.2447   0.2742 0.3553
+         8    Query LM (JM) 0.1501 0.2632   0.2910 0.4079
+         8     BM25 (tuned) 0.1685 0.2947   0.3314 0.4605
+         8 BM25 tuned + PRF 0.1919 0.2974   0.3258 0.3816
+       all    TF-IDF cosine 0.1746 0.2895   0.3160 0.3947
+       all    Query LM (JM) 0.2114 0.3487   0.3822 0.4605
+       all     BM25 (tuned) 0.2257 0.3645   0.4017 0.5132
+       all BM25 tuned + PRF 0.2487 0.3803   0.4201 0.5658
+
+Done. Files written to results/week7

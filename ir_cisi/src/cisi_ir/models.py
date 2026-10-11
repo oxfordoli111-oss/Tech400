@@ -1,8 +1,8 @@
-"""Ranked retrieval models (Manning et al.): VSM tf-idf (Ch. 6), BM25 (Ch. 11), query LM (Ch. 12).
+"""Ranked retrieval models (Manning et al., 2009): VSM tf-idf, BM25, query LM.
 
-Every model scores documents term-at-a-time (Sec. 7.1.5): it walks the postings list of each query
+Every model scores documents term-at-a-time: it walks the postings list of each query
 term and adds that term's contribution to a per-document accumulator.
-A query is a dict {term: weight}; this lets pseudo-relevance feedback (Ch. 9) reuse all models.
+A query is a dict {term: weight}; this lets pseudo-relevance feedback reuse all models.
 """
 import heapq
 import math
@@ -43,7 +43,7 @@ class TfIdfCosine(RetrievalModel):
 
 
 class BM25(RetrievalModel):
-    """Okapi BM25 (Sec. 11.4.3) with the non-negative idf variant log(1 + (N-df+.5)/(df+.5))."""
+    """Okapi BM25 (Robertson & Zaragoza, 2009) with the non-negative idf variant log(1 + (N-df+.5)/(df+.5))."""
     name = "bm25"
 
     def __init__(self, index, k1=1.2, b=0.75):
@@ -65,7 +65,7 @@ class BM25(RetrievalModel):
 
 
 class QueryLikelihoodJM(RetrievalModel):
-    """Unigram query likelihood with Jelinek-Mercer smoothing (Sec. 12.2.2).
+    """Unigram query likelihood with Jelinek-Mercer smoothing (Manning et al., 2009).
     Uses the rank-equivalent form: sum_t log(1 + (1-l)/l * (tf/dl) / (cf/T)); terms absent from a
     document add only a document-independent constant, so only postings are visited."""
     name = "lm_jm"
@@ -96,7 +96,14 @@ class SearchEngine:
         return self.index.pre(text)
 
     def search(self, text, k=10):
-        qtf = Counter(t for t in self.analyse(text) if self.index.df(t))
+        """Analyse raw query text, then rank (see search_terms)."""
+        return self.search_terms(self.analyse(text), k)
+
+    def search_terms(self, terms, k=10):
+        """Rank documents for an already-analysed list of query terms.
+        Splitting this out lets experiments feed truncated queries (e.g. the 2-3 term
+        queries typical of web search) through exactly the same scoring code."""
+        qtf = Counter(t for t in terms if self.index.df(t))
         if not qtf:
             return []
         qweights = dict(qtf)
